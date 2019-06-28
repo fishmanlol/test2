@@ -15,16 +15,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        let textField = TYInput(frame: CGRect(x: 100, y: 200, width: 200, height: 60), label: "FIRST NAME")
+        let textField = TYInput(frame: CGRect(x: 100, y: 200, width: 200, height: 60), label: "FIRST NAME", type: .password)
         self.textField = textField
         view.addSubview(textField)
-        textField.textField.delegate = self
-        textField.textField.textColor = .black
+        textField.textField!.delegate = self
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("123")
         view.endEditing(true)
+        
+        let selectCountryController = SelectCountryController()
+        show(selectCountryController, sender: nil)
     }
 }
 

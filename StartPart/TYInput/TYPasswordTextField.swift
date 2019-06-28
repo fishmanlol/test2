@@ -9,7 +9,6 @@
 import UIKit
 
 class TYPasswordTextField: TYNormalTextField {
-    weak var hideButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,13 +20,19 @@ class TYPasswordTextField: TYNormalTextField {
     }
     
     private func setup() {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "eye"), for: .normal)
-        button.setImage(UIImage(named: "eye_slash"), for: .selected)
-        button.addTarget(self, action: #selector(toggleButtonTapped), for: .touchUpInside)
-        self.hideButton = button
+        let button = UIButton()
         
-        leftView = hideButton
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: TYInput.defaultBottomLineColor, NSAttributedString.Key.font: UIFont(name: "AvenirNext-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)]
+        let attributedHide = NSAttributedString(string: "hide", attributes: attributes)
+        let attributedShow = NSAttributedString(string: "show", attributes: attributes)
+        
+        button.addTarget(self, action: #selector(toggleButtonTapped), for: .touchUpInside)
+        button.setAttributedTitle(attributedHide, for: .normal)
+        button.setAttributedTitle(attributedShow, for: .selected)
+        button.frame.size = attributedShow.size()
+        
+        rightView = button
+        rightViewMode = .always
     }
     
     @objc func toggleButtonTapped(button: UIButton) {

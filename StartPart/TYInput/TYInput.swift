@@ -21,6 +21,10 @@ class TYInput: UIView {
     var nameLabel: SpacingLabel!
     var textField: TYNormalTextField!
     
+    override func becomeFirstResponder() -> Bool {
+        return textField!.becomeFirstResponder()
+    }
+    
     //public
     public var label: String = "" {
         didSet {
@@ -32,25 +36,25 @@ class TYInput: UIView {
     
     public var labelColor: UIColor = TYInput.defaultLabelColor {
         didSet {
-            nameLabel.textColor = labelColor
+            nameLabel!.textColor = labelColor
         }
     }
     
     public var bottomLineHeight: CGFloat = TYInput.defaultBottomLineHeight {
         didSet {
-            textField.bottomLineHeight = bottomLineHeight
+            textField!.bottomLineHeight = bottomLineHeight
         }
     }
     
     public var font: UIFont = TYInput.defaultFont {
         didSet {
-            textField.font = font
+            textField!.font = font
         }
     }
     
     public var bottomLineColor: UIColor = TYInput.defaultBottomLineColor {
         didSet {
-            textField.bottomLineColor = bottomLineColor
+            textField!.bottomLineColor = bottomLineColor
         }
     }
     
@@ -90,6 +94,7 @@ class TYInput: UIView {
             textField = TYNormalTextField()
         }
         
+        textField.clipsToBounds = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         self.textField = textField
         addSubview(textField)
@@ -102,7 +107,7 @@ class TYInput: UIView {
         nameLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: TYInput.defaultLabelHeight).isActive = true
-        
+
         textField.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         textField.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true

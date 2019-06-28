@@ -15,40 +15,41 @@ class TYNormalTextField: UITextField {
             bottomLine?.frame = CGRect(x: 0, y: height, width: width, height: bottomLineHeight)
         }
     }
-    
+
     var bottomLineColor: UIColor = TYInput.defaultBottomLineColor {
         didSet {
             bottomLine?.backgroundColor = bottomLineColor.cgColor
         }
     }
-    
+
     private var bottomLine: CALayer?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
     private func setup() {
         contentVerticalAlignment = .center
         font = TYInput.defaultFont
         autocorrectionType = .no
         addBottomLine()
     }
-    
+
     private func addBottomLine() {
         let bottomLine = CALayer()
         self.bottomLine = bottomLine
         bottomLine.backgroundColor = bottomLineColor.cgColor
         layer.addSublayer(bottomLine)
     }
-    
+
     override func layoutSubviews() {
-        bottomLine?.frame = CGRect(x: 0, y: height, width: width, height: bottomLineHeight)
+        super.layoutSubviews()
+        bottomLine?.frame = CGRect(x: 0, y: height - bottomLineHeight, width: width, height: bottomLineHeight)
     }
 }
 
