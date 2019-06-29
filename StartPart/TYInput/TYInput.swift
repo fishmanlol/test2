@@ -12,11 +12,13 @@ import UIKit
 class TYInput: UIView {
     
     internal static let defaultLabelColor: UIColor = .gray
+    internal static let defaultTextColor: UIColor = .blue
     internal static let defaultBottomLineHeight: CGFloat = 1.2
     internal static let defaultBottomLineColor: UIColor = UIColor(red: 207/255.0, green: 212/255.0, blue: 217/255.0, alpha: 1)
     internal static let defaultTextFieldHeight: CGFloat = 32.0
     internal static let defaultLabelHeight: CGFloat = 20.0
-    internal static let defaultFont: UIFont = UIFont(name: "AvenirNext-Medium", size: 17) ?? UIFont.systemFont(ofSize: 17)
+    internal static let defaultLabelFont: UIFont = UIFont.avenirNext(bold: .medium, size: 14)
+    internal static let defaultTextFont: UIFont = UIFont.avenirNext(bold: .medium, size: 17)
     
     var nameLabel: SpacingLabel!
     var textField: TYNormalTextField!
@@ -36,7 +38,19 @@ class TYInput: UIView {
     
     public var labelColor: UIColor = TYInput.defaultLabelColor {
         didSet {
-            nameLabel!.textColor = labelColor
+            nameLabel.textColor = labelColor
+        }
+    }
+    
+    public var textColor: UIColor = TYInput.defaultTextColor {
+        didSet {
+            textField.textColor = textColor
+        }
+    }
+    
+    public var labelFont: UIFont = TYInput.defaultLabelFont {
+        didSet {
+            nameLabel.font = labelFont
         }
     }
     
@@ -46,9 +60,9 @@ class TYInput: UIView {
         }
     }
     
-    public var font: UIFont = TYInput.defaultFont {
+    public var textFont: UIFont = TYInput.defaultTextFont {
         didSet {
-            textField!.font = font
+            textField!.font = textFont
         }
     }
     
@@ -78,7 +92,7 @@ class TYInput: UIView {
         nameLabel.textColor = TYInput.defaultLabelColor
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.contentMode = .left
-        nameLabel.font = TYInput.defaultFont
+        nameLabel.font = TYInput.defaultLabelFont
         self.nameLabel = nameLabel
         addSubview(nameLabel)
         
@@ -91,10 +105,11 @@ class TYInput: UIView {
         case .password:
             textField = TYPasswordTextField()
         default:
-            textField = TYNormalTextField()
+            textField = TYPhoneTextField()
         }
         
         textField.clipsToBounds = true
+        textField.font = TYInput.defaultTextFont
         textField.translatesAutoresizingMaskIntoConstraints = false
         self.textField = textField
         addSubview(textField)

@@ -34,8 +34,8 @@ class TYNormalTextField: UITextField {
     }
 
     private func setup() {
+        defaultTextAttributes.updateValue(1.3, forKey: NSAttributedString.Key.kern)
         contentVerticalAlignment = .center
-        font = TYInput.defaultFont
         autocorrectionType = .no
         addBottomLine()
     }

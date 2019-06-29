@@ -70,4 +70,14 @@ extension SelectCountryController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if let viewController = self.presentingViewController as? ViewController {
+            viewController.selectedCountry = self.vm.country(at: indexPath.row) ?? Country.defaultCountry
+        }
+        
+        dismiss(animated: true)
+    }
 }

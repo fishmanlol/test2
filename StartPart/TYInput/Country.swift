@@ -12,6 +12,14 @@ struct Country {
     let id: String
     let name: String
     let code: String
+    
+    var displayFormat: String {
+        return "\(id) +\(code)"
+    }
+    
+    static var defaultCountry: Country {
+        return Country(id: "US", name: "United States", code: "1")
+    }
 }
 
 extension Country: Comparable {

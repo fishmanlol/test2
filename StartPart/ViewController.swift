@@ -10,6 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var selectedCountry: Country = Country.defaultCountry {
+        didSet {
+            if let phoneTextField = textField?.textField as? TYPhoneTextField {
+                phoneTextField.selectedCountry = selectedCountry
+            }
+        }
+    }
     weak var textField: TYInput?
 
     override func viewDidLoad() {
@@ -24,8 +31,9 @@ class ViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
         
-        let selectCountryController = SelectCountryController()
-        show(selectCountryController, sender: nil)
+//        let selectCountryController = SelectCountryController()
+//        let navController = UINavigationController(rootViewController: selectCountryController)
+//        present(navController, animated: true, completion: nil)
     }
 }
 

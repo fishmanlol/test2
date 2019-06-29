@@ -22,7 +22,7 @@ class TYPasswordTextField: TYNormalTextField {
     private func setup() {
         let button = UIButton()
         
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: TYInput.defaultBottomLineColor, NSAttributedString.Key.font: UIFont(name: "AvenirNext-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)]
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: TYInput.defaultBottomLineColor, NSAttributedString.Key.font: TYInput.defaultTextFont]
         let attributedHide = NSAttributedString(string: "hide", attributes: attributes)
         let attributedShow = NSAttributedString(string: "show", attributes: attributes)
         
