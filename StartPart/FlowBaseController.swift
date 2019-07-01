@@ -9,28 +9,38 @@
 import UIKit
 import SnapKit
 
-class FlowBaseController: UIViewController {
+class FlowBaseViewController: UIViewController {
     
     private weak var backButton: UIButton!
     private weak var buttonArea: UIView!
     weak var nextButton: UIButton!
+    var inputValid: Bool = false {
+        didSet {
+            modifyUI(valid: inputValid)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setup()
         viewsSetup()
         viewsLayout()
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let firstInput = view.subviews.first(where: { $0 is TYInput }) {
+            let _ = firstInput.becomeFirstResponder()
+        }
     }
     
     //Private functions
     private func setup() {
         view.backgroundColor = .white
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHeightChanged), name: Notification.Name.init(rawValue: "123"), object: KeyboardService.shared)
+        inputValid = false
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHeightChanged), name: UIResponder.keyboardWillChangeHeightNotification, object: nil)
     }
     
     private func viewsSetup() {
@@ -43,11 +53,12 @@ class FlowBaseController: UIViewController {
         
         let buttonArea = UIView()
         buttonArea.layer.zPosition = 10
-        buttonArea.backgroundColor = .gray
         self.buttonArea = buttonArea
         view.addSubview(buttonArea)
         
         let nextButton = UIButton(type: .system)
+        nextButton.layer.masksToBounds = true
+        nextButton.layer.cornerRadius = 20
         let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.avenirNext(bold: .medium, size: 17), NSAttributedString.Key.kern: 1.3]
         nextButton.setAttributedTitle(NSAttributedString(string: "Continue", attributes: attributes), for: .normal)
         self.nextButton = nextButton
@@ -68,17 +79,15 @@ class FlowBaseController: UIViewController {
         
         nextButton.snp.makeConstraints { (make) in
             make.centerX.top.equalToSuperview()
-            make.width.equalTo(200)
-            make.height.equalTo(60)
+            make.width.equalTo(220)
+            make.height.equalTo(40)
         }
         
         buttonArea.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.height.equalTo(100)
-            make.bottom.equalToSuperview()
+            make.height.equalTo(60)
+            make.bottom.equalToSuperview().offset(-KeyboardService.keyboardHeight)
         }
-        
-        buttonAreaLayout(KeyboardService.keyboardHeight)
     }
     
     private func buttonAreaLayout(_ keyboardHeight: CGFloat) {
@@ -87,24 +96,21 @@ class FlowBaseController: UIViewController {
         }
     }
     
-    //Objc functions
-//    @objc func keyboardWillChangeFrame(notification: Notification) {
-//        if let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-//            let frame = value.cgRectValue
-//            let referenceY: CGFloat = UIScreen.main.bounds.height - 0.5 * frame.height
-//
-//            if frame.minY < referenceY { //keyboard on screen, so we need handle
-//                buttonAreaLayout(frame.height)
-//                view.layoutIfNeeded()
-//            }
-//        }
-//    }
+    private func modifyUI(valid: Bool) {
+        if valid {
+            nextButton.backgroundColor = UIColor(r: 59, g: 143, b: 206)
+            nextButton.isEnabled = true
+        } else {
+            nextButton.backgroundColor = UIColor(r: 186, g: 192, b: 198)
+            nextButton.isEnabled = false
+        }
+    }
     
+    //Objc functions
     @objc func keyboardHeightChanged(notification: Notification) {
         if let height = notification.userInfo?["keyboardHeight"] as? CGFloat {
 
             buttonAreaLayout(height)
-            view.layoutIfNeeded()
         }
     }
     

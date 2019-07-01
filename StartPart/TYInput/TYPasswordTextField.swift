@@ -32,6 +32,7 @@ class TYPasswordTextField: TYNormalTextField {
         button.frame.size = attributedShow.size()
         
         rightView = button
+        rightView?.isHidden = true
         rightViewMode = .always
     }
     

@@ -12,7 +12,8 @@ import UIKit
 class KeyboardService {
     static var keyboardHeight: CGFloat = 0 {
         didSet {
-            NotificationCenter.default.post(name: Notification.Name.init(rawValue: "123"), object: nil, userInfo: ["keyboardHeight": keyboardHeight])
+            print("Keyboard height now is: \(keyboardHeight)")
+            NotificationCenter.default.post(name: UIResponder.keyboardWillChangeHeightNotification, object: nil, userInfo: ["keyboardHeight": keyboardHeight])
         }
     }
     static let shared = KeyboardService()
@@ -22,19 +23,21 @@ class KeyboardService {
     }
     
     private init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     private func invokeKeyboard() {
         let textField = UITextField()
+        textField.autocorrectionType = .no
         UIApplication.shared.windows.last?.addSubview(textField)
         textField.becomeFirstResponder()
         textField.resignFirstResponder()
         textField.removeFromSuperview()
     }
     
-    @objc func keyboardWillShow(notification: Notification) {
-        if let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+    @objc func keyboardWillChangeFrame(notification: Notification) {
+        if let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+            value.cgRectValue.minY < UIScreen.main.bounds.maxY {
             KeyboardService.keyboardHeight = value.cgRectValue.height
         }
     }

@@ -20,9 +20,15 @@ class SpacingLabel: UILabel {
         }
     }
     
-    convenience init(frame: CGRect, spacing: CGFloat = 1.2) {
-        self.init(frame: frame)
-        attributes = [NSAttributedString.Key.kern: spacing]
+    convenience init(text: String, spacing: CGFloat = 1.3, font: UIFont = UIFont.avenirNext(bold: .regular, size: 17)) {
+        self.init(frame: CGRect.zero)
+        attributes = [NSAttributedString.Key.kern: spacing, NSAttributedString.Key.font: font]
+        self.text = text
+    }
+    
+    public func updateColor(to color: UIColor) {
+        attributes[NSAttributedString.Key.foregroundColor] = color
+        attributedText = NSAttributedString(string: text ?? "", attributes: attributes)
     }
     
     private init() {

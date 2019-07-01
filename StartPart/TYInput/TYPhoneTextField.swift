@@ -19,12 +19,16 @@ class TYPhoneTextField: TYNormalTextField {
     
     var selectedCountry = Country.defaultCountry {
         didSet {
-            updateAreaButtonTitle(selectedCountry.displayFormat)
-            updateLeftContainerSize(selectedCountry.displayFormat)
+            if oldValue != selectedCountry {
+                updateAreaButtonTitle(selectedCountry.displayFormat)
+                updateLeftContainerSize(selectedCountry.displayFormat)
+                
+                NotificationCenter.default.post(name: UIResponder.countryChangedInPhoneTextFieldNotification, object: nil, userInfo: ["country": selectedCountry])
+            }
         }
     }
     
-    let leftViewAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: TYInput.defaultTextFont, NSAttributedString.Key.foregroundColor: TYInput.defaultLabelColor]
+    let leftViewAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: TYInput.defaultTextFont, NSAttributedString.Key.foregroundColor: UIColor(r: 79, g: 170, b: 248)]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,7 +41,7 @@ class TYPhoneTextField: TYNormalTextField {
     
     private func setup() {
         
-        keyboardType = .namePhonePad
+        keyboardType = .phonePad
         
         //container view
         let view = UIView()
@@ -91,7 +95,23 @@ class TYPhoneTextField: TYNormalTextField {
         areaButton.setAttributedTitle(NSAttributedString(string: title, attributes: leftViewAttributes), for: .normal)
     }
     
+    private func getCurrentViewController() -> UIViewController? {
+        if let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
+            return nav.visibleViewController
+        }
+        return nil
+    }
+    
     @objc func areaCodeButtonTapped() {
-        
+        let selectCountryController = SelectCountryController()
+        selectCountryController.delegate = self
+        let navContainer = UINavigationController(rootViewController: selectCountryController)
+        getCurrentViewController()?.present(navContainer, animated: true, completion: nil)
+    }
+}
+
+extension TYPhoneTextField: SelectCountryControllerDelegate {
+    func select(selectCountryController: SelectCountryController, country: Country) {
+        selectedCountry = country
     }
 }

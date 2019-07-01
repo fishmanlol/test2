@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0BE99B27FAA51E46EDFCE43D /* Pods_StartPart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C67C8DC638892ED295991F /* Pods_StartPart.framework */; };
+		104358EA22C73E3F00A75EE1 /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104358E922C73E3F00A75EE1 /* Notification.Name.swift */; };
+		10E0B79222C9311100EC2850 /* AgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0B79122C9311100EC2850 /* AgreementController.swift */; };
+		10E0B79622C981EC00EC2850 /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0B79522C981EC00EC2850 /* PhoneNumberViewController.swift */; };
+		10E0B79822C9832B00EC2850 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0B79722C9832A00EC2850 /* PasswordViewController.swift */; };
 		8E8D8DF022C577AF00744200 /* SelectCountryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D8DEF22C577AF00744200 /* SelectCountryController.swift */; };
 		8E8D8DF422C57C5F00744200 /* countries in Resources */ = {isa = PBXBuildFile; fileRef = 8E8D8DF322C57C5F00744200 /* countries */; };
 		8E8D8DF622C57D6500744200 /* FileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D8DF522C57D6500744200 /* FileCoordinator.swift */; };
@@ -15,7 +19,6 @@
 		8E8D8DFA22C590D100744200 /* SelectCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D8DF922C590D100744200 /* SelectCountryViewModel.swift */; };
 		8EB6B9A522C3EE7F002AABC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6B9A422C3EE7F002AABC5 /* AppDelegate.swift */; };
 		8EB6B9A922C3EE7F002AABC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6B9A822C3EE7F002AABC5 /* ViewController.swift */; };
-		8EB6B9AC22C3EE7F002AABC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6B9AA22C3EE7F002AABC5 /* Main.storyboard */; };
 		8EB6B9AE22C3EE80002AABC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6B9AD22C3EE80002AABC5 /* Assets.xcassets */; };
 		8EB6B9B122C3EE80002AABC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6B9AF22C3EE80002AABC5 /* LaunchScreen.storyboard */; };
 		8EB6B9B922C3F35B002AABC5 /* TYInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6B9B822C3F35B002AABC5 /* TYInput.swift */; };
@@ -34,6 +37,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		104358E922C73E3F00A75EE1 /* Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
+		10E0B79122C9311100EC2850 /* AgreementController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgreementController.swift; sourceTree = "<group>"; };
+		10E0B79522C981EC00EC2850 /* PhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewController.swift; sourceTree = "<group>"; };
+		10E0B79722C9832A00EC2850 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		113BB8C1AFAE4135B370041E /* Pods-StartPart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartPart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StartPart/Pods-StartPart.debug.xcconfig"; sourceTree = "<group>"; };
 		14C67C8DC638892ED295991F /* Pods_StartPart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StartPart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		204A02A307F1502544FC989B /* Pods-StartPart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartPart.release.xcconfig"; path = "Pods/Target Support Files/Pods-StartPart/Pods-StartPart.release.xcconfig"; sourceTree = "<group>"; };
@@ -45,7 +52,6 @@
 		8EB6B9A122C3EE7F002AABC5 /* StartPart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StartPart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EB6B9A422C3EE7F002AABC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EB6B9A822C3EE7F002AABC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8EB6B9AB22C3EE7F002AABC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8EB6B9AD22C3EE80002AABC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8EB6B9B022C3EE80002AABC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EB6B9B222C3EE80002AABC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -122,8 +128,11 @@
 				8EDE4D0522C6ED9F0037C034 /* KeyBoardService.swift */,
 				8EBC1ED722C6B56800A6AA61 /* LandingViewController.swift */,
 				8EDE4D0122C6C6400037C034 /* FlowBaseController.swift */,
+				10E0B79722C9832A00EC2850 /* PasswordViewController.swift */,
 				8EDE4D0322C6E4CE0037C034 /* NameViewController.swift */,
-				8EB6B9AA22C3EE7F002AABC5 /* Main.storyboard */,
+				10E0B79522C981EC00EC2850 /* PhoneNumberViewController.swift */,
+				10E0B79122C9311100EC2850 /* AgreementController.swift */,
+				104358E922C73E3F00A75EE1 /* Notification.Name.swift */,
 				8EB6B9AD22C3EE80002AABC5 /* Assets.xcassets */,
 				8EB6B9AF22C3EE80002AABC5 /* LaunchScreen.storyboard */,
 				8EB6B9B222C3EE80002AABC5 /* Info.plist */,
@@ -214,7 +223,6 @@
 				8EB6B9B122C3EE80002AABC5 /* LaunchScreen.storyboard in Resources */,
 				8E8D8DF422C57C5F00744200 /* countries in Resources */,
 				8EB6B9AE22C3EE80002AABC5 /* Assets.xcassets in Resources */,
-				8EB6B9AC22C3EE7F002AABC5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,16 +307,20 @@
 				8EB6B9BD22C40739002AABC5 /* TYNormalTextField.swift in Sources */,
 				8EBC1EDA22C6BBA800A6AA61 /* UIColor.swift in Sources */,
 				8EDE4D0422C6E4CE0037C034 /* NameViewController.swift in Sources */,
+				10E0B79222C9311100EC2850 /* AgreementController.swift in Sources */,
 				8E8D8DF822C5888F00744200 /* Country.swift in Sources */,
 				8ECF7E7122C54ECB00C75E8A /* String.swift in Sources */,
 				8E8D8DF622C57D6500744200 /* FileCoordinator.swift in Sources */,
 				8EB6B9BF22C40D76002AABC5 /* UIView.swift in Sources */,
 				8EBC1ED822C6B56800A6AA61 /* LandingViewController.swift in Sources */,
 				8E8D8DF022C577AF00744200 /* SelectCountryController.swift in Sources */,
+				104358EA22C73E3F00A75EE1 /* Notification.Name.swift in Sources */,
 				8E8D8DFA22C590D100744200 /* SelectCountryViewModel.swift in Sources */,
 				8EDE4D0022C6BD220037C034 /* UIFont.swift in Sources */,
 				8EDE4D0622C6ED9F0037C034 /* KeyBoardService.swift in Sources */,
 				8EB6B9C322C448BD002AABC5 /* TYPasswordTextField.swift in Sources */,
+				10E0B79822C9832B00EC2850 /* PasswordViewController.swift in Sources */,
+				10E0B79622C981EC00EC2850 /* PhoneNumberViewController.swift in Sources */,
 				8EB6B9C122C4338B002AABC5 /* SpacingLabel.swift in Sources */,
 				8EB6B9B922C3F35B002AABC5 /* TYInput.swift in Sources */,
 				8EDE4D0222C6C6400037C034 /* FlowBaseController.swift in Sources */,
@@ -318,14 +330,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8EB6B9AA22C3EE7F002AABC5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8EB6B9AB22C3EE7F002AABC5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8EB6B9AF22C3EE80002AABC5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -456,6 +460,7 @@
 			baseConfigurationReference = 113BB8C1AFAE4135B370041E /* Pods-StartPart.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DKH5D278T8;
 				INFOPLIST_FILE = StartPart/Info.plist;
@@ -466,6 +471,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.werur.StartPart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -476,6 +482,7 @@
 			baseConfigurationReference = 204A02A307F1502544FC989B /* Pods-StartPart.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DKH5D278T8;
 				INFOPLIST_FILE = StartPart/Info.plist;
@@ -486,6 +493,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.werur.StartPart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -34,9 +34,10 @@ class TYNormalTextField: UITextField {
     }
 
     private func setup() {
-        defaultTextAttributes.updateValue(1.3, forKey: NSAttributedString.Key.kern)
+        defaultTextAttributes.updateValue(1.2, forKey: NSAttributedString.Key.kern)
         contentVerticalAlignment = .center
         autocorrectionType = .no
+        autocapitalizationType = .none
         addBottomLine()
     }
 

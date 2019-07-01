@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+@objc protocol TYInputDelegate: class {
+    @objc optional func input(_ input: TYInput, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    @objc optional func input(_ input: TYInput, valueChangeTo string: String?)
+    @objc optional func input(_ input: TYInput, selectedCountry country: Country)
+}
+
 class TYInput: UIView {
     
     internal static let defaultLabelColor: UIColor = .gray
@@ -22,17 +28,25 @@ class TYInput: UIView {
     
     var nameLabel: SpacingLabel!
     var textField: TYNormalTextField!
+    weak var delegate: TYInputDelegate?
     
     override func becomeFirstResponder() -> Bool {
         return textField!.becomeFirstResponder()
     }
     
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: nameLabel.intrinsicContentSize.width, height: 60)
+    }
+    
     //public
-    public var label: String = "" {
-        didSet {
-            if oldValue == "" || label == "" {
-                updateLayout(animate: true)
-            }
+    public var label: String = ""
+    
+    public var text: String {
+        set {
+            textField.text = text
+        }
+        get {
+            return textField.text ?? ""
         }
     }
     
@@ -56,19 +70,30 @@ class TYInput: UIView {
     
     public var bottomLineHeight: CGFloat = TYInput.defaultBottomLineHeight {
         didSet {
-            textField!.bottomLineHeight = bottomLineHeight
+            textField.bottomLineHeight = bottomLineHeight
         }
     }
     
     public var textFont: UIFont = TYInput.defaultTextFont {
         didSet {
-            textField!.font = textFont
+            textField.font = textFont
         }
     }
     
     public var bottomLineColor: UIColor = TYInput.defaultBottomLineColor {
         didSet {
-            textField!.bottomLineColor = bottomLineColor
+            textField.bottomLineColor = bottomLineColor
+        }
+    }
+    
+    public var isEmpty: Bool {
+        return textField.text?.isEmpty ?? true
+    }
+    
+    public func blink(to bottomLineColor: UIColor = .red) {
+        self.bottomLineColor = bottomLineColor
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.bottomLineColor = TYInput.defaultBottomLineColor
         }
     }
     
@@ -87,12 +112,10 @@ class TYInput: UIView {
     
     private func setup(with label: String, type: TextFieldType) {
         
-        let nameLabel = SpacingLabel(frame: CGRect.zero)
-        nameLabel.text = label
+        let nameLabel = SpacingLabel(text: label, font: TYInput.defaultLabelFont)
         nameLabel.textColor = TYInput.defaultLabelColor
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.contentMode = .left
-        nameLabel.font = TYInput.defaultLabelFont
         self.nameLabel = nameLabel
         addSubview(nameLabel)
         
@@ -104,17 +127,34 @@ class TYInput: UIView {
             textField = TYNormalTextField()
         case .password:
             textField = TYPasswordTextField()
-        default:
+        case .phone:
             textField = TYPhoneTextField()
+            labelColor = UIColor(r: 79, g: 170, b: 248)
         }
         
         textField.clipsToBounds = true
         textField.font = TYInput.defaultTextFont
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.delegate = self
+        textField.addTarget(self, action: #selector(textFieldValueChanged), for: .editingChanged)
         self.textField = textField
         addSubview(textField)
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(countryChanged), name: UIResponder.countryChangedInPhoneTextFieldNotification, object: nil)
+    }
+    
+    //Objc functions
+    @objc func textFieldValueChanged(textField: UITextField) {
+        if textField is TYPasswordTextField {
+            textField.rightView?.isHidden = (textField.text ?? "").isEmpty
+        }
+        delegate?.input?(self, valueChangeTo: textField.text)
+    }
+    
+    @objc func countryChanged(notification: Notification) {
+        if let country = notification.userInfo?["country"] as? Country {
+            delegate?.input?(self, selectedCountry: country)
+        }
     }
     
     override func layoutSubviews() {
@@ -129,20 +169,13 @@ class TYInput: UIView {
         textField.heightAnchor.constraint(equalToConstant: TYInput.defaultTextFieldHeight).isActive = true
     }
     
-    private func updateLayout(animate: Bool) {
-        let duration = 0.25
-        if animate {
-            UIView.animate(withDuration: duration) {
-                self.layoutIfNeeded()
-            }
-        } else {
-            layoutIfNeeded()
-        }
-    }
-    
     enum TextFieldType {
         case normal, password, phone
     }
 }
 
-
+extension TYInput: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return delegate?.input?(self, shouldChangeCharactersIn: range, replacementString: string) ?? true
+    }
+}

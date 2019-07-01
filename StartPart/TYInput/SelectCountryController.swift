@@ -9,9 +9,14 @@
 import UIKit
 import SnapKit
 
+protocol SelectCountryControllerDelegate: class {
+    func select(selectCountryController: SelectCountryController, country: Country)
+}
+
 class SelectCountryController: UIViewController {
     
     weak var tableView: UITableView!
+    weak var delegate: SelectCountryControllerDelegate?
     
     let vm = SelectCountryViewModel()
     
@@ -73,11 +78,9 @@ extension SelectCountryController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        if let viewController = self.presentingViewController as? ViewController {
-            viewController.selectedCountry = self.vm.country(at: indexPath.row) ?? Country.defaultCountry
+        if let selectedCountry = vm.country(at: indexPath.row) {
+            delegate?.select(selectCountryController: self, country: selectedCountry)
         }
-        
         dismiss(animated: true)
     }
 }

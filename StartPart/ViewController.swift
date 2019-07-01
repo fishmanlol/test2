@@ -27,14 +27,6 @@ class ViewController: UIViewController {
         view.addSubview(textField)
         textField.textField!.delegate = self
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        
-//        let selectCountryController = SelectCountryController()
-//        let navController = UINavigationController(rootViewController: selectCountryController)
-//        present(navController, animated: true, completion: nil)
-    }
 }
 
 extension ViewController: UITextFieldDelegate {
