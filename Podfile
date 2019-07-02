@@ -8,6 +8,7 @@ target 'StartPart' do
   source 'https://github.com/CocoaPods/Specs.git'
   pod 'PhoneNumberKit', '~> 2.6'
   pod 'SnapKit'
-  # Pods for StartPart
+  pod 'PinCodeTextField'
+ # Pods for StartPart
 
 end

@@ -34,6 +34,8 @@ class TYPasswordTextField: TYNormalTextField {
         rightView = button
         rightView?.isHidden = true
         rightViewMode = .always
+        
+        
     }
     
     @objc func toggleButtonTapped(button: UIButton) {

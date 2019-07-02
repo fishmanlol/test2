@@ -95,7 +95,7 @@ class LandingViewController: UIViewController {
     //Objc functions
     @objc func logInButtonTapped() {
         let nameController = NameViewController()
-        navigationController?.pushViewController(nameController, animated: true)
+        navigationController?.pushViewController(nameController, animated: false)
     }
     
     @objc func signUpButtonTapped() {

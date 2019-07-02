@@ -29,7 +29,7 @@ class FlowBaseViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewWillAppear(false)
         
         if let firstInput = view.subviews.first(where: { $0 is TYInput }) {
             let _ = firstInput.becomeFirstResponder()
@@ -68,13 +68,13 @@ class FlowBaseViewController: UIViewController {
     private func viewsLayout() {
         backButton.snp.makeConstraints { (make) in
             if #available(iOS 11.0, *) {
-                make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
-                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+                make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(18)
+                make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
             } else {
-                make.left.equalToSuperview().offset(20)
-                make.right.equalToSuperview().offset(-20)
+                make.left.equalToSuperview().offset(18)
+                make.top.equalToSuperview().offset(12)
             }
-            make.height.width.equalTo(32)
+            make.height.width.equalTo(26)
         }
         
         nextButton.snp.makeConstraints { (make) in

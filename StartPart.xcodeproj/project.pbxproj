@@ -17,6 +17,7 @@
 		8E8D8DF622C57D6500744200 /* FileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D8DF522C57D6500744200 /* FileCoordinator.swift */; };
 		8E8D8DF822C5888F00744200 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D8DF722C5888F00744200 /* Country.swift */; };
 		8E8D8DFA22C590D100744200 /* SelectCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D8DF922C590D100744200 /* SelectCountryViewModel.swift */; };
+		8EA0AF2D22CAAF3A0084E062 /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA0AF2C22CAAF3A0084E062 /* PhoneVerificationViewController.swift */; };
 		8EB6B9A522C3EE7F002AABC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6B9A422C3EE7F002AABC5 /* AppDelegate.swift */; };
 		8EB6B9A922C3EE7F002AABC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6B9A822C3EE7F002AABC5 /* ViewController.swift */; };
 		8EB6B9AE22C3EE80002AABC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6B9AD22C3EE80002AABC5 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		8E8D8DF522C57D6500744200 /* FileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCoordinator.swift; sourceTree = "<group>"; };
 		8E8D8DF722C5888F00744200 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		8E8D8DF922C590D100744200 /* SelectCountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryViewModel.swift; sourceTree = "<group>"; };
+		8EA0AF2C22CAAF3A0084E062 /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		8EB6B9A122C3EE7F002AABC5 /* StartPart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StartPart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EB6B9A422C3EE7F002AABC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EB6B9A822C3EE7F002AABC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,9 +130,10 @@
 				8EDE4D0522C6ED9F0037C034 /* KeyBoardService.swift */,
 				8EBC1ED722C6B56800A6AA61 /* LandingViewController.swift */,
 				8EDE4D0122C6C6400037C034 /* FlowBaseController.swift */,
-				10E0B79722C9832A00EC2850 /* PasswordViewController.swift */,
 				8EDE4D0322C6E4CE0037C034 /* NameViewController.swift */,
+				10E0B79722C9832A00EC2850 /* PasswordViewController.swift */,
 				10E0B79522C981EC00EC2850 /* PhoneNumberViewController.swift */,
+				8EA0AF2C22CAAF3A0084E062 /* PhoneVerificationViewController.swift */,
 				10E0B79122C9311100EC2850 /* AgreementController.swift */,
 				104358E922C73E3F00A75EE1 /* Notification.Name.swift */,
 				8EB6B9AD22C3EE80002AABC5 /* Assets.xcassets */,
@@ -258,6 +261,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-StartPart/Pods-StartPart-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
+				"${BUILT_PRODUCTS_DIR}/PinCodeTextField/PinCodeTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -265,6 +269,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinCodeTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +310,7 @@
 				8EB6B9BB22C3F43C002AABC5 /* TYPhoneTextField.swift in Sources */,
 				8EB6B9A522C3EE7F002AABC5 /* AppDelegate.swift in Sources */,
 				8EB6B9BD22C40739002AABC5 /* TYNormalTextField.swift in Sources */,
+				8EA0AF2D22CAAF3A0084E062 /* PhoneVerificationViewController.swift in Sources */,
 				8EBC1EDA22C6BBA800A6AA61 /* UIColor.swift in Sources */,
 				8EDE4D0422C6E4CE0037C034 /* NameViewController.swift in Sources */,
 				10E0B79222C9311100EC2850 /* AgreementController.swift in Sources */,
@@ -464,7 +470,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DKH5D278T8;
 				INFOPLIST_FILE = StartPart/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -486,7 +492,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DKH5D278T8;
 				INFOPLIST_FILE = StartPart/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -68,8 +68,8 @@ class PasswordViewController: FlowBaseViewController {
         }
         
         container.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
-            make.top.equalToSuperview().offset(220)
+            make.centerX.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(180)
             make.left.equalToSuperview().offset(60)
         }
     }
@@ -90,7 +90,7 @@ class PasswordViewController: FlowBaseViewController {
     
     @objc func nextButtonTapped() {
         let phoneNumberViewController = PhoneNumberViewController()
-        navigationController?.pushViewController(phoneNumberViewController, animated: true)
+        navigationController?.pushViewController(phoneNumberViewController, animated: false)
     }
 }
 

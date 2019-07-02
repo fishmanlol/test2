@@ -13,7 +13,7 @@ class PhoneNumberViewController: FlowBaseViewController {
     
     weak var titleLabel: UILabel!
     weak var phoneInput: TYInput!
-    weak var remindLabel: UILabel!
+    weak var remindLabel: SpacingLabel!
     weak var container: UILayoutGuide!
     var phoneNumberKit = PhoneNumberKit()
     var phoneNumber: PhoneNumber? {
@@ -45,8 +45,7 @@ class PhoneNumberViewController: FlowBaseViewController {
         self.phoneInput = phoneInput
         view.addSubview(phoneInput)
         
-        let remindLabel = SpacingLabel(text: "We'll send you an SMS verification code.")
-        remindLabel.font = UIFont.avenirNext(bold: .regular, size: 13)
+        let remindLabel = SpacingLabel(text: "We'll send you an SMS verification code.", spacing: 0.5, font: UIFont.avenirNext(bold: .regular, size: 12))
         remindLabel.numberOfLines = 0
         self.remindLabel = remindLabel
         view.addSubview(remindLabel)
@@ -67,8 +66,8 @@ class PhoneNumberViewController: FlowBaseViewController {
         }
         
         container.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
-            make.top.equalToSuperview().offset(220)
+            make.centerX.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(180)
             make.left.equalToSuperview().offset(60)
         }
         
@@ -80,6 +79,36 @@ class PhoneNumberViewController: FlowBaseViewController {
     
     private func setup() {
         phoneInput.delegate = self
+        
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+    }
+    
+    private func remindError() {
+        remindLabel.updateColor(to: .red)
+        remindLabel.text = "This mobile number is not available"
+    }
+    
+    private func restoreRemind() {
+        remindLabel.updateColor(to: .black)
+        remindLabel.text = "We'll send you an SMS verification code."
+    }
+    
+    private func sendVerification(phoneNumber: PhoneNumber, completion: (Bool) -> Void) {
+        let success = Bool.random()
+        completion(success)
+    }
+    
+    @objc func nextButtonTapped() {
+        guard let phoneNumber = self.phoneNumber else { return }
+        sendVerification(phoneNumber: phoneNumber) { success in
+            if success {
+                let phoneVerificationViewController = PhoneVerificationViewController(phoneNumber: phoneNumber, phoneNumberKit: phoneNumberKit)
+                navigationController?.pushViewController(phoneVerificationViewController, animated: false)
+            } else {
+                remindError()
+                self.phoneNumber = nil
+            }
+        }
     }
     
 }
@@ -90,6 +119,7 @@ extension PhoneNumberViewController: TYInputDelegate {
     }
     
     func input(_ input: TYInput, valueChangeTo string: String?) {
+        restoreRemind()
         if let phoneTextField = input.textField as? TYPhoneTextField {
             let selectedCountry = phoneTextField.selectedCountry
             let numberToFormat = (string ?? "").onlyNumber

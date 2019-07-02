@@ -66,8 +66,12 @@ class NameViewController: FlowBaseViewController {
         attributedString.addAttribute(.link, value: "\(String.appScheme)tos", range: tosRange)
         attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: privacyRange)
         attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: tosRange)
-        attributedString.addAttribute(.font, value: UIFont.avenirNext(bold: .regular, size: 13), range: wholeRange)
-        attributedString.addAttribute(.kern, value: 1.1, range: wholeRange)
+        attributedString.addAttribute(.font, value: UIFont.avenirNext(bold: .medium, size: 12), range: wholeRange)
+        attributedString.addAttribute(.kern, value: 0.5, range: wholeRange)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = -3
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
         agreementTextView.attributedText = attributedString
         self.agreementTextView = agreementTextView
         view.addSubview(agreementTextView)
@@ -75,8 +79,8 @@ class NameViewController: FlowBaseViewController {
     
     private func viewsLayout() {
         container.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
-            make.top.equalToSuperview().offset(120)
+            make.centerX.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(80)
             make.left.equalToSuperview().offset(60)
         }
         
@@ -97,8 +101,9 @@ class NameViewController: FlowBaseViewController {
         }
         
         agreementTextView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(container)
-            make.top.equalTo(lastNameInput.snp.bottom).offset(6)
+            make.left.equalTo(container).offset(-4)
+            make.right.equalTo(container).offset(4)
+            make.top.equalTo(lastNameInput.snp.bottom)
         }
     }
     
@@ -109,7 +114,7 @@ class NameViewController: FlowBaseViewController {
     
     @objc func nextButtonTapped() {
         let passwordController = PasswordViewController()
-        navigationController?.pushViewController(passwordController, animated: true)
+        navigationController?.pushViewController(passwordController, animated: false)
     }
 }
 

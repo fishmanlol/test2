@@ -43,7 +43,7 @@ class TYInput: UIView {
     
     public var text: String {
         set {
-            textField.text = text
+            textField.text = newValue
         }
         get {
             return textField.text ?? ""

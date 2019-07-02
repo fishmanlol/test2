@@ -5,16 +5,19 @@ PODS:
   - PhoneNumberKit/PhoneNumberKitCore (2.6.0)
   - PhoneNumberKit/UIKit (2.6.0):
     - PhoneNumberKit/PhoneNumberKitCore
+  - PinCodeTextField (0.1.0)
   - SnapKit (5.0.0)
 
 DEPENDENCIES:
   - PhoneNumberKit (~> 2.6)
+  - PinCodeTextField
   - SnapKit
 
 SPEC CHECKSUMS:
   PhoneNumberKit: 167ee1f0bbb6efce7c62559e620eae745595532f
+  PinCodeTextField: a3c39be58bde3ed1d6888d0fb1d88b0a4a2277cc
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
 
-PODFILE CHECKSUM: c29baaaafa295cb92486c3249f905a1bc1e65fd3
+PODFILE CHECKSUM: 84c694b23b48edc1656c347a010a8f397a8532ee
 
 COCOAPODS: 1.4.0
