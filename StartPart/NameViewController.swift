@@ -91,13 +91,11 @@ class NameViewController: FlowBaseViewController {
         firstNameInput.snp.makeConstraints { (make) in
             make.left.right.equalTo(container)
             make.top.equalTo(titleLabel.snp.bottom).offset(36)
-            make.height.equalTo(60)
         }
         
         lastNameInput.snp.makeConstraints { (make) in
             make.left.right.equalTo(container)
             make.top.equalTo(firstNameInput.snp.bottom).offset(18)
-            make.height.equalTo(60)
         }
         
         agreementTextView.snp.makeConstraints { (make) in

@@ -41,9 +41,9 @@ class PasswordViewController: FlowBaseViewController {
         self.passwordInput = passwordInput
         view.addSubview(passwordInput)
         
-        let errorLabel = SpacingLabel(text: "Your password must be at least 8 characters.")
-        errorLabel.isHidden = false
-        errorLabel.textColor = .red
+        let errorLabel = SpacingLabel(text: "", spacing: 0.5, font: UIFont.avenirNext(bold: .regular, size: 12))
+        errorLabel.numberOfLines = 0
+        errorLabel.updateColor(to: .red)
         self.errorLabel = errorLabel
         view.addSubview(errorLabel)
         

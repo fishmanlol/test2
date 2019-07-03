@@ -25,6 +25,16 @@ class PhoneNumberViewController: FlowBaseViewController {
             }
         }
     }
+    var forgotFlow = false
+    
+    init(forgotFlow: Bool = false) {
+        self.forgotFlow = forgotFlow
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +112,7 @@ class PhoneNumberViewController: FlowBaseViewController {
         guard let phoneNumber = self.phoneNumber else { return }
         sendVerification(phoneNumber: phoneNumber) { success in
             if success {
-                let phoneVerificationViewController = PhoneVerificationViewController(phoneNumber: phoneNumber, phoneNumberKit: phoneNumberKit)
+                let phoneVerificationViewController = PhoneVerificationViewController(phoneNumber: phoneNumber, phoneNumberKit: phoneNumberKit, lastSend: Date(), forgotFlow: forgotFlow)
                 navigationController?.pushViewController(phoneVerificationViewController, animated: false)
             } else {
                 remindError()

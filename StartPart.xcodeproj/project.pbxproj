@@ -19,7 +19,6 @@
 		8E8D8DFA22C590D100744200 /* SelectCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D8DF922C590D100744200 /* SelectCountryViewModel.swift */; };
 		8EA0AF2D22CAAF3A0084E062 /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA0AF2C22CAAF3A0084E062 /* PhoneVerificationViewController.swift */; };
 		8EB6B9A522C3EE7F002AABC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6B9A422C3EE7F002AABC5 /* AppDelegate.swift */; };
-		8EB6B9A922C3EE7F002AABC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6B9A822C3EE7F002AABC5 /* ViewController.swift */; };
 		8EB6B9AE22C3EE80002AABC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6B9AD22C3EE80002AABC5 /* Assets.xcassets */; };
 		8EB6B9B122C3EE80002AABC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6B9AF22C3EE80002AABC5 /* LaunchScreen.storyboard */; };
 		8EB6B9B922C3F35B002AABC5 /* TYInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6B9B822C3F35B002AABC5 /* TYInput.swift */; };
@@ -30,6 +29,10 @@
 		8EB6B9C322C448BD002AABC5 /* TYPasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6B9C222C448BD002AABC5 /* TYPasswordTextField.swift */; };
 		8EBC1ED822C6B56800A6AA61 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBC1ED722C6B56800A6AA61 /* LandingViewController.swift */; };
 		8EBC1EDA22C6BBA800A6AA61 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBC1ED922C6BBA800A6AA61 /* UIColor.swift */; };
+		8EC6047D22CBD16B00D98455 /* SimpleHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC6047C22CBD16B00D98455 /* SimpleHUD.swift */; };
+		8EC6047F22CBF9AF00D98455 /* FinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC6047E22CBF9AF00D98455 /* FinishViewController.swift */; };
+		8EC6048122CC035900D98455 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC6048022CC035900D98455 /* LoginViewController.swift */; };
+		8EC6048322CC194700D98455 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC6048222CC194700D98455 /* UpdatePasswordViewController.swift */; };
 		8ECF7E7122C54ECB00C75E8A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF7E7022C54ECB00C75E8A /* String.swift */; };
 		8EDE4D0022C6BD220037C034 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE4CFF22C6BD220037C034 /* UIFont.swift */; };
 		8EDE4D0222C6C6400037C034 /* FlowBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE4D0122C6C6400037C034 /* FlowBaseController.swift */; };
@@ -53,7 +56,6 @@
 		8EA0AF2C22CAAF3A0084E062 /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		8EB6B9A122C3EE7F002AABC5 /* StartPart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StartPart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EB6B9A422C3EE7F002AABC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8EB6B9A822C3EE7F002AABC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8EB6B9AD22C3EE80002AABC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8EB6B9B022C3EE80002AABC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EB6B9B222C3EE80002AABC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +67,10 @@
 		8EB6B9C222C448BD002AABC5 /* TYPasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYPasswordTextField.swift; sourceTree = "<group>"; };
 		8EBC1ED722C6B56800A6AA61 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		8EBC1ED922C6BBA800A6AA61 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		8EC6047C22CBD16B00D98455 /* SimpleHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHUD.swift; sourceTree = "<group>"; };
+		8EC6047E22CBF9AF00D98455 /* FinishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishViewController.swift; sourceTree = "<group>"; };
+		8EC6048022CC035900D98455 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8EC6048222CC194700D98455 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		8ECF7E7022C54ECB00C75E8A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		8EDE4CFF22C6BD220037C034 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		8EDE4D0122C6C6400037C034 /* FlowBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowBaseController.swift; sourceTree = "<group>"; };
@@ -126,14 +132,17 @@
 				8EB6B9A422C3EE7F002AABC5 /* AppDelegate.swift */,
 				8EDE4CFF22C6BD220037C034 /* UIFont.swift */,
 				8ECF7E6F22C54E4500C75E8A /* TYInput */,
-				8EB6B9A822C3EE7F002AABC5 /* ViewController.swift */,
 				8EDE4D0522C6ED9F0037C034 /* KeyBoardService.swift */,
 				8EBC1ED722C6B56800A6AA61 /* LandingViewController.swift */,
+				8EC6048022CC035900D98455 /* LoginViewController.swift */,
 				8EDE4D0122C6C6400037C034 /* FlowBaseController.swift */,
 				8EDE4D0322C6E4CE0037C034 /* NameViewController.swift */,
 				10E0B79722C9832A00EC2850 /* PasswordViewController.swift */,
 				10E0B79522C981EC00EC2850 /* PhoneNumberViewController.swift */,
 				8EA0AF2C22CAAF3A0084E062 /* PhoneVerificationViewController.swift */,
+				8EC6048222CC194700D98455 /* UpdatePasswordViewController.swift */,
+				8EC6047E22CBF9AF00D98455 /* FinishViewController.swift */,
+				8EC6047C22CBD16B00D98455 /* SimpleHUD.swift */,
 				10E0B79122C9311100EC2850 /* AgreementController.swift */,
 				104358E922C73E3F00A75EE1 /* Notification.Name.swift */,
 				8EB6B9AD22C3EE80002AABC5 /* Assets.xcassets */,
@@ -306,9 +315,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EB6B9A922C3EE7F002AABC5 /* ViewController.swift in Sources */,
 				8EB6B9BB22C3F43C002AABC5 /* TYPhoneTextField.swift in Sources */,
 				8EB6B9A522C3EE7F002AABC5 /* AppDelegate.swift in Sources */,
+				8EC6047F22CBF9AF00D98455 /* FinishViewController.swift in Sources */,
 				8EB6B9BD22C40739002AABC5 /* TYNormalTextField.swift in Sources */,
 				8EA0AF2D22CAAF3A0084E062 /* PhoneVerificationViewController.swift in Sources */,
 				8EBC1EDA22C6BBA800A6AA61 /* UIColor.swift in Sources */,
@@ -323,12 +332,15 @@
 				104358EA22C73E3F00A75EE1 /* Notification.Name.swift in Sources */,
 				8E8D8DFA22C590D100744200 /* SelectCountryViewModel.swift in Sources */,
 				8EDE4D0022C6BD220037C034 /* UIFont.swift in Sources */,
+				8EC6048322CC194700D98455 /* UpdatePasswordViewController.swift in Sources */,
 				8EDE4D0622C6ED9F0037C034 /* KeyBoardService.swift in Sources */,
 				8EB6B9C322C448BD002AABC5 /* TYPasswordTextField.swift in Sources */,
 				10E0B79822C9832B00EC2850 /* PasswordViewController.swift in Sources */,
 				10E0B79622C981EC00EC2850 /* PhoneNumberViewController.swift in Sources */,
 				8EB6B9C122C4338B002AABC5 /* SpacingLabel.swift in Sources */,
 				8EB6B9B922C3F35B002AABC5 /* TYInput.swift in Sources */,
+				8EC6047D22CBD16B00D98455 /* SimpleHUD.swift in Sources */,
+				8EC6048122CC035900D98455 /* LoginViewController.swift in Sources */,
 				8EDE4D0222C6C6400037C034 /* FlowBaseController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

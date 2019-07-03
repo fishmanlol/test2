@@ -10,8 +10,11 @@ import UIKit
 
 class TYPasswordTextField: TYNormalTextField {
     
-    override init(frame: CGRect) {
+    var defaultSecure: Bool = false
+    
+    init(frame: CGRect, defaultSecure: Bool = false) {
         super.init(frame: frame)
+        self.defaultSecure = defaultSecure
         setup()
     }
     
@@ -35,7 +38,9 @@ class TYPasswordTextField: TYNormalTextField {
         rightView?.isHidden = true
         rightViewMode = .always
         
-        
+        if defaultSecure {
+            toggleButtonTapped(button: button)
+        }
     }
     
     @objc func toggleButtonTapped(button: UIButton) {
@@ -43,7 +48,7 @@ class TYPasswordTextField: TYNormalTextField {
         hideText(button.isSelected)
     }
     
-    private func hideText(_ hide: Bool) {
+    func hideText(_ hide: Bool) {
         isSecureTextEntry = hide ? true : false
     }
 }

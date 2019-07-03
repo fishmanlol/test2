@@ -36,6 +36,10 @@ class FlowBaseViewController: UIViewController {
         }
     }
     
+    public func hideBackButton() {
+        backButton.isHidden = true
+    }
+    
     //Private functions
     private func setup() {
         view.backgroundColor = .white
@@ -90,7 +94,7 @@ class FlowBaseViewController: UIViewController {
         }
     }
     
-    private func buttonAreaLayout(_ keyboardHeight: CGFloat) {
+    func buttonAreaLayout(_ keyboardHeight: CGFloat) {
         buttonArea.snp.updateConstraints { (make) in
             make.bottom.equalToSuperview().offset(-keyboardHeight)
         }

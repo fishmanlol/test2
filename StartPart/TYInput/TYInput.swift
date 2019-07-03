@@ -97,9 +97,9 @@ class TYInput: UIView {
         }
     }
     
-    convenience init(frame: CGRect, label: String, type: TextFieldType = .normal) {
+    convenience init(frame: CGRect, label: String, type: TextFieldType = .normal, defaultSecure: Bool = false) {
         self.init(frame: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width > 100 ? frame.size.width : 100, height: frame.size.height > 60 ? frame.size.height : 60))
-        setup(with: label, type: type)
+        setup(with: label, type: type, defaultSecure: defaultSecure)
     }
     
     private override init(frame: CGRect) {
@@ -110,7 +110,7 @@ class TYInput: UIView {
         super.init(coder: coder)
     }
     
-    private func setup(with label: String, type: TextFieldType) {
+    private func setup(with label: String, type: TextFieldType, defaultSecure: Bool) {
         
         let nameLabel = SpacingLabel(text: label, font: TYInput.defaultLabelFont)
         nameLabel.textColor = TYInput.defaultLabelColor
@@ -126,7 +126,7 @@ class TYInput: UIView {
         case .normal:
             textField = TYNormalTextField()
         case .password:
-            textField = TYPasswordTextField()
+            textField = TYPasswordTextField(frame: CGRect.zero, defaultSecure: defaultSecure)
         case .phone:
             textField = TYPhoneTextField()
             labelColor = UIColor(r: 79, g: 170, b: 248)
