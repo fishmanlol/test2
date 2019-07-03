@@ -24,7 +24,7 @@ class FinishViewController: FlowBaseViewController {
         let imageView = UIImageView(image: UIImage(named: "finish_page"))
         imageView.contentMode = .scaleAspectFit
         self.imageView = imageView
-        view.addSubview(imageView)
+        view.insertSubview(imageView, at: 0)
     }
     
     private func viewsLayout() {

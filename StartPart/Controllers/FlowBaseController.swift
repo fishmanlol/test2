@@ -56,7 +56,6 @@ class FlowBaseViewController: UIViewController {
         view.addSubview(backButton)
         
         let buttonArea = UIView()
-        buttonArea.layer.zPosition = 10
         self.buttonArea = buttonArea
         view.addSubview(buttonArea)
         

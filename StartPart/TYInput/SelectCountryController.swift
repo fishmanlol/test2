@@ -40,6 +40,9 @@ class SelectCountryController: UIViewController {
         tableView.delegate = self
         self.tableView = tableView
         view.addSubview(tableView)
+        
+        let leftBarButton = UIBarButtonItem(image: UIImage(named: "arrow_back"), style: .plain, target: self, action: #selector(leftBarButtonTapped))
+        navigationItem.setLeftBarButton(leftBarButton, animated: false)
     }
     
     override func viewDidLayoutSubviews() {
@@ -48,6 +51,10 @@ class SelectCountryController: UIViewController {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+    }
+    
+    @objc func leftBarButtonTapped() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

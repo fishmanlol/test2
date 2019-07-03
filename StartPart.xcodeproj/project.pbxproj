@@ -107,6 +107,36 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8E2DBF0922CD217A00EC71FD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8EBC1ED722C6B56800A6AA61 /* LandingViewController.swift */,
+				8EC6048022CC035900D98455 /* LoginViewController.swift */,
+				8EDE4D0122C6C6400037C034 /* FlowBaseController.swift */,
+				8EDE4D0322C6E4CE0037C034 /* NameViewController.swift */,
+				10E0B79722C9832A00EC2850 /* PasswordViewController.swift */,
+				10E0B79522C981EC00EC2850 /* PhoneNumberViewController.swift */,
+				8EA0AF2C22CAAF3A0084E062 /* PhoneVerificationViewController.swift */,
+				8EC6048222CC194700D98455 /* UpdatePasswordViewController.swift */,
+				8EC6047E22CBF9AF00D98455 /* FinishViewController.swift */,
+				10E0B79122C9311100EC2850 /* AgreementController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8E2DBF0A22CD219C00EC71FD /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				8EBC1ED922C6BBA800A6AA61 /* UIColor.swift */,
+				8EB6B9A422C3EE7F002AABC5 /* AppDelegate.swift */,
+				8EDE4CFF22C6BD220037C034 /* UIFont.swift */,
+				8EDE4D0522C6ED9F0037C034 /* KeyBoardService.swift */,
+				8EC6047C22CBD16B00D98455 /* SimpleHUD.swift */,
+				104358E922C73E3F00A75EE1 /* Notification.Name.swift */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
 		8EB6B99822C3EE7E002AABC5 = {
 			isa = PBXGroup;
 			children = (
@@ -128,23 +158,9 @@
 		8EB6B9A322C3EE7F002AABC5 /* StartPart */ = {
 			isa = PBXGroup;
 			children = (
-				8EBC1ED922C6BBA800A6AA61 /* UIColor.swift */,
-				8EB6B9A422C3EE7F002AABC5 /* AppDelegate.swift */,
-				8EDE4CFF22C6BD220037C034 /* UIFont.swift */,
 				8ECF7E6F22C54E4500C75E8A /* TYInput */,
-				8EDE4D0522C6ED9F0037C034 /* KeyBoardService.swift */,
-				8EBC1ED722C6B56800A6AA61 /* LandingViewController.swift */,
-				8EC6048022CC035900D98455 /* LoginViewController.swift */,
-				8EDE4D0122C6C6400037C034 /* FlowBaseController.swift */,
-				8EDE4D0322C6E4CE0037C034 /* NameViewController.swift */,
-				10E0B79722C9832A00EC2850 /* PasswordViewController.swift */,
-				10E0B79522C981EC00EC2850 /* PhoneNumberViewController.swift */,
-				8EA0AF2C22CAAF3A0084E062 /* PhoneVerificationViewController.swift */,
-				8EC6048222CC194700D98455 /* UpdatePasswordViewController.swift */,
-				8EC6047E22CBF9AF00D98455 /* FinishViewController.swift */,
-				8EC6047C22CBD16B00D98455 /* SimpleHUD.swift */,
-				10E0B79122C9311100EC2850 /* AgreementController.swift */,
-				104358E922C73E3F00A75EE1 /* Notification.Name.swift */,
+				8E2DBF0A22CD219C00EC71FD /* Others */,
+				8E2DBF0922CD217A00EC71FD /* Controllers */,
 				8EB6B9AD22C3EE80002AABC5 /* Assets.xcassets */,
 				8EB6B9AF22C3EE80002AABC5 /* LaunchScreen.storyboard */,
 				8EB6B9B222C3EE80002AABC5 /* Info.plist */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhoneNumberKit
 
 class LoginViewController: FlowBaseViewController {
     
@@ -19,6 +20,8 @@ class LoginViewController: FlowBaseViewController {
     
     let number = "123"
     let password = "123"
+    let phoneNumberKit = PhoneNumberKit()
+    var phoneNumber: PhoneNumber?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,7 +106,7 @@ class LoginViewController: FlowBaseViewController {
     }
     
     private func checkInputValid() {
-        inputValid = !phoneNumberInput.isEmpty && !passwordInput.isEmpty
+        inputValid = phoneNumber != nil && !passwordInput.isEmpty
         print("input valid : \(inputValid)")
     }
     
@@ -133,20 +136,43 @@ class LoginViewController: FlowBaseViewController {
 }
 
 extension LoginViewController: TYInputDelegate {
-    func input(_ input: TYInput, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if input.textField is TYPhoneTextField {
-            let allowInput = string.allSatisfy { $0.isNumber }
-            if !allowInput {
-                input.blink()
-            }
-            return allowInput
-        }
-        
-        return true
-    }
     
     func input(_ input: TYInput, valueChangeTo string: String?) {
         hideError()
+        
+        if let phoneTextField = input.textField as? TYPhoneTextField {
+            let selectedCountry = phoneTextField.selectedCountry
+            let numberToFormat = (string ?? "").onlyNumber
+            //if parse correctly
+            if let phoneNumber = try? phoneNumberKit.parse(numberToFormat, withRegion: selectedCountry.id, ignoreType: true) {
+                let numberFormatted = phoneNumberKit.format(phoneNumber, toType: .national, withPrefix: false)
+                //sometimes formatter will automatically convert our input to most possible number, but we don't want to change use's input.
+                //if input: 9491313313, formatter give us (949) 131-3313
+                //if input: 94913133130, formatter give us 0913 133 130
+                //we compare first 3 number to decide whether we need this format
+                let numberFormattedFiltered = numberFormatted.onlyNumber
+                let commonPrefix = numberFormattedFiltered.commonPrefix(with: numberToFormat)
+                if commonPrefix.count > 2 {
+                    //we need display this formatted number and save
+                    self.phoneNumber = phoneNumber
+                    input.textField.text = numberFormatted
+                } else {
+                    //discard
+                    self.phoneNumber = nil
+                    input.textField.text = numberToFormat
+                }
+                print(numberFormatted)
+                print(input.text)
+            } else { //parse error, which means this phone number is not valid
+                self.phoneNumber = nil
+                input.textField.text = numberToFormat
+            }
+        }
+        
         checkInputValid()
+    }
+    
+    func input(_ input: TYInput, selectedCountry country: Country) {
+        self.input(input, valueChangeTo: input.text)
     }
 }
