@@ -99,7 +99,7 @@ class LandingViewController: UIViewController {
     }
     
     @objc func signUpButtonTapped() {
-        let nameController = NameViewController()
+        let nameController = NameViewController(registrationInfo: RegistrationInfo())
         navigationController?.pushViewController(nameController, animated: false)
     }
 }

@@ -15,6 +15,8 @@ class PhoneNumberViewController: FlowBaseViewController {
     weak var phoneInput: TYInput!
     weak var remindLabel: SpacingLabel!
     weak var container: UILayoutGuide!
+    
+    var registrationInfo: RegistrationInfo?
     var phoneNumberKit = PhoneNumberKit()
     var phoneNumber: PhoneNumber? {
         didSet {
@@ -27,8 +29,10 @@ class PhoneNumberViewController: FlowBaseViewController {
     }
     var forgotFlow = false
     
-    init(forgotFlow: Bool = false) {
+    init(registrationInfo: RegistrationInfo? = nil, forgotFlow: Bool = false) {
         self.forgotFlow = forgotFlow
+        self.registrationInfo = registrationInfo
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -93,9 +97,9 @@ class PhoneNumberViewController: FlowBaseViewController {
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
     }
     
-    private func remindError() {
-        remindLabel.updateColor(to: .red)
-        remindLabel.text = "This mobile number is not available"
+    private func remindError(_ title: String) {
+        remindLabel.updateColor(to: .red)//"This mobile number is not available"
+        remindLabel.text = title
     }
     
     private func restoreRemind() {
@@ -103,19 +107,31 @@ class PhoneNumberViewController: FlowBaseViewController {
         remindLabel.text = "We'll send you an SMS verification code."
     }
     
-    private func sendVerification(phoneNumber: PhoneNumber, completion: (Bool) -> Void) {
-        let success = Bool.random()
-        completion(success)
+    private func sendVerification(phoneNumber: PhoneNumber, completion: @escaping (Bool) -> Void) {
+        let phoneNumberString = "+\(phoneNumber.countryCode) \(phoneNumber.nationalNumber)"
+        APIService.shared.sendVerficationCode(phoneNumber: phoneNumberString) { (error, result) in
+            
+            guard error == nil, let result = result, result.errorCode == "0" else {
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
     }
     
     @objc func nextButtonTapped() {
         guard let phoneNumber = self.phoneNumber else { return }
+        displayHUD(title: "One Moment...")
+        view.endEditing(true)
         sendVerification(phoneNumber: phoneNumber) { success in
+            self.removeHUD()
             if success {
-                let phoneVerificationViewController = PhoneVerificationViewController(phoneNumber: phoneNumber, phoneNumberKit: phoneNumberKit, lastSend: Date(), forgotFlow: forgotFlow)
-                navigationController?.pushViewController(phoneVerificationViewController, animated: false)
+                let phoneVerificationViewController = PhoneVerificationViewController(phoneNumber: phoneNumber, phoneNumberKit: self.phoneNumberKit, lastSend: Date(), forgotFlow: self.forgotFlow, registrationInfo: self.registrationInfo)
+                
+                self.navigationController?.pushViewController(phoneVerificationViewController, animated: false)
             } else {
-                remindError()
+                self.remindError("This mobile number is not available")
                 self.phoneNumber = nil
             }
         }

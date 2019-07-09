@@ -9,6 +9,7 @@ target 'StartPart' do
   pod 'PhoneNumberKit', '~> 2.6'
   pod 'SnapKit'
   pod 'PinCodeTextField'
+  pod 'Alamofire'
  # Pods for StartPart
 
 end

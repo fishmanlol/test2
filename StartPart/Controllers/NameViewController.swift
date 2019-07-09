@@ -17,6 +17,16 @@ class NameViewController: FlowBaseViewController {
     weak var lastNameInput: TYInput!
     weak var container: UILayoutGuide!
     
+    var registrationInfo: RegistrationInfo!
+    
+    init(registrationInfo: RegistrationInfo) {
+        super.init(nibName: nil, bundle: nil)
+        self.registrationInfo = registrationInfo
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +121,9 @@ class NameViewController: FlowBaseViewController {
     }
     
     @objc func nextButtonTapped() {
-        let passwordController = PasswordViewController()
+        registrationInfo.firstName = firstNameInput.text
+        registrationInfo.lastName = lastNameInput.text
+        let passwordController = PasswordViewController(registrationInfo: registrationInfo)
         navigationController?.pushViewController(passwordController, animated: false)
     }
 }

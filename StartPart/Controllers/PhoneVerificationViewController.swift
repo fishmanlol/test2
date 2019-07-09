@@ -32,12 +32,14 @@ class PhoneVerificationViewController: FlowBaseViewController {
     var lastSend: Date!
     var timer: Timer?
     var forgotFlow = false
+    var registrationInfo: RegistrationInfo?
     
-    init(phoneNumber: PhoneNumber, phoneNumberKit: PhoneNumberKit, lastSend: Date, forgotFlow: Bool = false) {
+    init(phoneNumber: PhoneNumber, phoneNumberKit: PhoneNumberKit, lastSend: Date, forgotFlow: Bool = false, registrationInfo: RegistrationInfo? = nil) {
         self.phoneNumber = phoneNumber
         self.phoneNumberKit = phoneNumberKit
         self.lastSend = lastSend
         self.forgotFlow = forgotFlow
+        self.registrationInfo = registrationInfo
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -201,18 +203,46 @@ class PhoneVerificationViewController: FlowBaseViewController {
         }
     }
     
-    private func validate(code: String?, complete: @escaping (Bool) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if code == "123456" {
-                complete(true)
-            } else {
+    private func validate(code: String, complete: @escaping (Bool) -> Void) {
+        let phoneNumberString = "+\(phoneNumber.countryCode) \(phoneNumber.nationalNumber)"
+        if forgotFlow { //forgot password flow
+            print("forgot password?")
+        } else { //registration flow
+            guard let password = registrationInfo?.password, let firstName = registrationInfo?.firstName, let lastName = registrationInfo?.lastName else {
+                print("registration info error")
                 complete(false)
+                return
             }
+            
+            APIService.shared.register(phoneNumber: phoneNumberString, verificationCode: code, password: password, firstName: firstName, middleName: registrationInfo?.middleName, lastName: lastName) { (success, error) in
+                if !success {
+                    print("Error happens in register")
+                    complete(false)
+                    return
+                }
+            
+                print("success!")
+                complete(true)
+            }
+            
         }
     }
     
     private func sendVerification() {
-        print("resend")
+        
+        inputValid = false
+        let phoneNumberString = "+\(phoneNumber.countryCode) \(phoneNumber.nationalNumber)"
+        APIService.shared.sendVerficationCode(phoneNumber: phoneNumberString) { (error, result) in
+            
+            guard error == nil, let result = result, result.errorCode == "0" else {
+                print("error")
+                self.displayAlert(title: "Oops", msg: "Please try again later.", hasCancel: false, action: {})
+                self.inputValid = true
+                return
+            }
+            
+            self.beginCountdown()
+        }
     }
     
     private func changeNextButtonWithoutAnimation(title: String) {
@@ -224,8 +254,6 @@ class PhoneVerificationViewController: FlowBaseViewController {
     
     @objc func nextButtonTapped() {
         lastSend = Date()
-        inputValid = false
-        beginCountdown()
         sendVerification()
     }
     
@@ -259,7 +287,7 @@ extension PhoneVerificationViewController: PinCodeTextFieldDelegate {
         let digits = textField.text?.count ?? 0
         if digits == textField.characterLimit { //complete input
             showHUD()
-            validate(code: textField.text) { (isCorrect) in
+            validate(code: textField.text!) { (isCorrect) in
                 self.hideHUD()
                 if isCorrect {
                     self.handleCodeCorrect()

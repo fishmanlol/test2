@@ -16,6 +16,17 @@ class PasswordViewController: FlowBaseViewController {
     weak var passwordInput: TYInput!
     weak var container: UILayoutGuide!
     
+    var registrationInfo: RegistrationInfo!
+    
+    init(registrationInfo: RegistrationInfo) {
+        super.init(nibName: nil, bundle: nil)
+        self.registrationInfo = registrationInfo
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -89,7 +100,8 @@ class PasswordViewController: FlowBaseViewController {
     }
     
     @objc func nextButtonTapped() {
-        let phoneNumberViewController = PhoneNumberViewController()
+        registrationInfo.password = passwordInput.text
+        let phoneNumberViewController = PhoneNumberViewController(registrationInfo: registrationInfo)
         navigationController?.pushViewController(phoneNumberViewController, animated: false)
     }
 }

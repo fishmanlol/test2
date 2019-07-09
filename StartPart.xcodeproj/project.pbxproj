@@ -12,6 +12,12 @@
 		10E0B79222C9311100EC2850 /* AgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0B79122C9311100EC2850 /* AgreementController.swift */; };
 		10E0B79622C981EC00EC2850 /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0B79522C981EC00EC2850 /* PhoneNumberViewController.swift */; };
 		10E0B79822C9832B00EC2850 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0B79722C9832A00EC2850 /* PasswordViewController.swift */; };
+		8E55D85222D3AFD4009F3E28 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55D85122D3AFD4009F3E28 /* APIService.swift */; };
+		8E55D85822D3C3AC009F3E28 /* UserLoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55D85722D3C3AC009F3E28 /* UserLoginInfo.swift */; };
+		8E55D85D22D3C40F009F3E28 /* RegistrationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55D85C22D3C40F009F3E28 /* RegistrationInfo.swift */; };
+		8E55D86322D3CB30009F3E28 /* AiTmedResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55D86222D3CB30009F3E28 /* AiTmedResult.swift */; };
+		8E55D86522D3CFBE009F3E28 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55D86422D3CFBE009F3E28 /* UIViewController.swift */; };
+		8E55D86722D3EE43009F3E28 /* VerificationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55D86622D3EE43009F3E28 /* VerificationResult.swift */; };
 		8E8D8DF022C577AF00744200 /* SelectCountryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D8DEF22C577AF00744200 /* SelectCountryController.swift */; };
 		8E8D8DF422C57C5F00744200 /* countries in Resources */ = {isa = PBXBuildFile; fileRef = 8E8D8DF322C57C5F00744200 /* countries */; };
 		8E8D8DF622C57D6500744200 /* FileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D8DF522C57D6500744200 /* FileCoordinator.swift */; };
@@ -48,6 +54,12 @@
 		113BB8C1AFAE4135B370041E /* Pods-StartPart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartPart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StartPart/Pods-StartPart.debug.xcconfig"; sourceTree = "<group>"; };
 		14C67C8DC638892ED295991F /* Pods_StartPart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StartPart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		204A02A307F1502544FC989B /* Pods-StartPart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartPart.release.xcconfig"; path = "Pods/Target Support Files/Pods-StartPart/Pods-StartPart.release.xcconfig"; sourceTree = "<group>"; };
+		8E55D85122D3AFD4009F3E28 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		8E55D85722D3C3AC009F3E28 /* UserLoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginInfo.swift; sourceTree = "<group>"; };
+		8E55D85C22D3C40F009F3E28 /* RegistrationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInfo.swift; sourceTree = "<group>"; };
+		8E55D86222D3CB30009F3E28 /* AiTmedResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiTmedResult.swift; sourceTree = "<group>"; };
+		8E55D86422D3CFBE009F3E28 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		8E55D86622D3EE43009F3E28 /* VerificationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationResult.swift; sourceTree = "<group>"; };
 		8E8D8DEF22C577AF00744200 /* SelectCountryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryController.swift; sourceTree = "<group>"; };
 		8E8D8DF322C57C5F00744200 /* countries */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countries; sourceTree = "<group>"; };
 		8E8D8DF522C57D6500744200 /* FileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCoordinator.swift; sourceTree = "<group>"; };
@@ -128,13 +140,50 @@
 			isa = PBXGroup;
 			children = (
 				8EBC1ED922C6BBA800A6AA61 /* UIColor.swift */,
+				8E55D85122D3AFD4009F3E28 /* APIService.swift */,
 				8EB6B9A422C3EE7F002AABC5 /* AppDelegate.swift */,
 				8EDE4CFF22C6BD220037C034 /* UIFont.swift */,
 				8EDE4D0522C6ED9F0037C034 /* KeyBoardService.swift */,
 				8EC6047C22CBD16B00D98455 /* SimpleHUD.swift */,
 				104358E922C73E3F00A75EE1 /* Notification.Name.swift */,
+				8E55D86422D3CFBE009F3E28 /* UIViewController.swift */,
 			);
 			path = Others;
+			sourceTree = "<group>";
+		};
+		8E55D85322D3B993009F3E28 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8E55D85F22D3CA53009F3E28 /* Verification */,
+				8E55D85B22D3C3EE009F3E28 /* Registration */,
+				8E55D85A22D3C3C5009F3E28 /* Login */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8E55D85A22D3C3C5009F3E28 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8E55D85722D3C3AC009F3E28 /* UserLoginInfo.swift */,
+				8E55D86222D3CB30009F3E28 /* AiTmedResult.swift */,
+				8E55D86622D3EE43009F3E28 /* VerificationResult.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8E55D85B22D3C3EE009F3E28 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				8E55D85C22D3C40F009F3E28 /* RegistrationInfo.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		8E55D85F22D3CA53009F3E28 /* Verification */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Verification;
 			sourceTree = "<group>";
 		};
 		8EB6B99822C3EE7E002AABC5 = {
@@ -162,6 +211,7 @@
 				8E2DBF0A22CD219C00EC71FD /* Others */,
 				8E2DBF0922CD217A00EC71FD /* Controllers */,
 				8EB6B9AD22C3EE80002AABC5 /* Assets.xcassets */,
+				8E55D85322D3B993009F3E28 /* Models */,
 				8EB6B9AF22C3EE80002AABC5 /* LaunchScreen.storyboard */,
 				8EB6B9B222C3EE80002AABC5 /* Info.plist */,
 			);
@@ -285,6 +335,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-StartPart/Pods-StartPart-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PinCodeTextField/PinCodeTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -293,6 +344,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinCodeTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -331,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E55D85822D3C3AC009F3E28 /* UserLoginInfo.swift in Sources */,
 				8EB6B9BB22C3F43C002AABC5 /* TYPhoneTextField.swift in Sources */,
 				8EB6B9A522C3EE7F002AABC5 /* AppDelegate.swift in Sources */,
 				8EC6047F22CBF9AF00D98455 /* FinishViewController.swift in Sources */,
@@ -338,21 +391,26 @@
 				8EA0AF2D22CAAF3A0084E062 /* PhoneVerificationViewController.swift in Sources */,
 				8EBC1EDA22C6BBA800A6AA61 /* UIColor.swift in Sources */,
 				8EDE4D0422C6E4CE0037C034 /* NameViewController.swift in Sources */,
+				8E55D85D22D3C40F009F3E28 /* RegistrationInfo.swift in Sources */,
 				10E0B79222C9311100EC2850 /* AgreementController.swift in Sources */,
 				8E8D8DF822C5888F00744200 /* Country.swift in Sources */,
 				8ECF7E7122C54ECB00C75E8A /* String.swift in Sources */,
 				8E8D8DF622C57D6500744200 /* FileCoordinator.swift in Sources */,
 				8EB6B9BF22C40D76002AABC5 /* UIView.swift in Sources */,
+				8E55D86522D3CFBE009F3E28 /* UIViewController.swift in Sources */,
+				8E55D86722D3EE43009F3E28 /* VerificationResult.swift in Sources */,
 				8EBC1ED822C6B56800A6AA61 /* LandingViewController.swift in Sources */,
 				8E8D8DF022C577AF00744200 /* SelectCountryController.swift in Sources */,
 				104358EA22C73E3F00A75EE1 /* Notification.Name.swift in Sources */,
 				8E8D8DFA22C590D100744200 /* SelectCountryViewModel.swift in Sources */,
 				8EDE4D0022C6BD220037C034 /* UIFont.swift in Sources */,
+				8E55D86322D3CB30009F3E28 /* AiTmedResult.swift in Sources */,
 				8EC6048322CC194700D98455 /* UpdatePasswordViewController.swift in Sources */,
 				8EDE4D0622C6ED9F0037C034 /* KeyBoardService.swift in Sources */,
 				8EB6B9C322C448BD002AABC5 /* TYPasswordTextField.swift in Sources */,
 				10E0B79822C9832B00EC2850 /* PasswordViewController.swift in Sources */,
 				10E0B79622C981EC00EC2850 /* PhoneNumberViewController.swift in Sources */,
+				8E55D85222D3AFD4009F3E28 /* APIService.swift in Sources */,
 				8EB6B9C122C4338B002AABC5 /* SpacingLabel.swift in Sources */,
 				8EB6B9B922C3F35B002AABC5 /* TYInput.swift in Sources */,
 				8EC6047D22CBD16B00D98455 /* SimpleHUD.swift in Sources */,
