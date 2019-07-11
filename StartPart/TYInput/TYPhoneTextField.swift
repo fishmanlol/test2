@@ -41,7 +41,8 @@ class TYPhoneTextField: TYNormalTextField {
     
     private func setup() {
         
-        keyboardType = .phonePad
+        keyboardType = .numberPad
+        textContentType = nil
         
         //container view
         let view = UIView()
@@ -86,7 +87,7 @@ class TYPhoneTextField: TYNormalTextField {
         let attributedAreaTitle = NSAttributedString(string: title, attributes: leftViewAttributes)
         let titleSize = attributedAreaTitle.size()
         leftContainer.frame.size = CGSize(width: titleSize.width + margin, height: titleSize.height)
-        //little trick after changing left view frame. Because only change leftview frame will let layout weird(when leftview width larger, it will cover part of editing area), we do this to let system help us coordinate the layout
+        //little trick after changing left view frame. Because only change leftview frame will let layout weird(when leftview width increase, it will cover part of editing area), we do this to let system help us coordinate the layout
         becomeFirstResponder()
         resignFirstResponder()
     }
@@ -105,8 +106,8 @@ class TYPhoneTextField: TYNormalTextField {
     @objc func areaCodeButtonTapped() {
         let selectCountryController = SelectCountryController()
         selectCountryController.delegate = self
-        let navContainer = UINavigationController(rootViewController: selectCountryController)
-        getCurrentViewController()?.present(navContainer, animated: true, completion: nil)
+        let navController = UINavigationController(rootViewController: selectCountryController)
+        getCurrentViewController()?.present(navController, animated: true, completion: nil)
     }
 }
 

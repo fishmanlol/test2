@@ -18,8 +18,6 @@ class LoginViewController: FlowBaseViewController {
     weak var errorLabel: UILabel!
     weak var container: UILayoutGuide!
     
-    let number = "123"
-    let password = "123"
     let phoneNumberKit = PhoneNumberKit()
     var phoneNumber: PhoneNumber?
     
@@ -111,7 +109,7 @@ class LoginViewController: FlowBaseViewController {
     }
     
     private func showError() {
-        errorLabel.text = "Try number: 123, password: 123, ~~~~~~~~~~~~~~~~~~~~~~~~~`"
+        errorLabel.text = "Error happens, please try again"
     }
     
     private func hideError() {
@@ -119,13 +117,19 @@ class LoginViewController: FlowBaseViewController {
     }
     
     @objc func nextButtonTapped() {
-        let numberText = phoneNumberInput.text
+        guard let phoneNumebr = phoneNumber else { return }
+        let numberText = "+\(phoneNumebr.countryCode) \(phoneNumebr.nationalNumber)"
         let passwordText = passwordInput.text
         
-        if numberText == number && passwordText == password {
-            print("success!")
-        } else {
-            showError()
+        displayHUD()
+        APIService.shared.login(phoneNumber: numberText, password: passwordText) { (success, resultData) in
+            self.removeHUD()
+            guard success, let resultData = resultData else {
+                self.showError()
+                return
+            }
+            
+            print("success!!!!!!!!!!!!!!!Login!!!!")
         }
     }
     
@@ -161,8 +165,7 @@ extension LoginViewController: TYInputDelegate {
                     self.phoneNumber = nil
                     input.textField.text = numberToFormat
                 }
-                print(numberFormatted)
-                print(input.text)
+
             } else { //parse error, which means this phone number is not valid
                 self.phoneNumber = nil
                 input.textField.text = numberToFormat

@@ -12,6 +12,8 @@
 		10E0B79222C9311100EC2850 /* AgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0B79122C9311100EC2850 /* AgreementController.swift */; };
 		10E0B79622C981EC00EC2850 /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0B79522C981EC00EC2850 /* PhoneNumberViewController.swift */; };
 		10E0B79822C9832B00EC2850 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0B79722C9832A00EC2850 /* PasswordViewController.swift */; };
+		8E24ACC822D697180079935A /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E24ACC722D697180079935A /* UserDefaults.swift */; };
+		8E24ACCA22D69AF00079935A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E24ACC922D69AF00079935A /* User.swift */; };
 		8E55D85222D3AFD4009F3E28 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55D85122D3AFD4009F3E28 /* APIService.swift */; };
 		8E55D85822D3C3AC009F3E28 /* UserLoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55D85722D3C3AC009F3E28 /* UserLoginInfo.swift */; };
 		8E55D85D22D3C40F009F3E28 /* RegistrationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55D85C22D3C40F009F3E28 /* RegistrationInfo.swift */; };
@@ -54,6 +56,8 @@
 		113BB8C1AFAE4135B370041E /* Pods-StartPart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartPart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StartPart/Pods-StartPart.debug.xcconfig"; sourceTree = "<group>"; };
 		14C67C8DC638892ED295991F /* Pods_StartPart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StartPart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		204A02A307F1502544FC989B /* Pods-StartPart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartPart.release.xcconfig"; path = "Pods/Target Support Files/Pods-StartPart/Pods-StartPart.release.xcconfig"; sourceTree = "<group>"; };
+		8E24ACC722D697180079935A /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		8E24ACC922D69AF00079935A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8E55D85122D3AFD4009F3E28 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		8E55D85722D3C3AC009F3E28 /* UserLoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginInfo.swift; sourceTree = "<group>"; };
 		8E55D85C22D3C40F009F3E28 /* RegistrationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInfo.swift; sourceTree = "<group>"; };
@@ -140,9 +144,11 @@
 			isa = PBXGroup;
 			children = (
 				8EBC1ED922C6BBA800A6AA61 /* UIColor.swift */,
+				8E24ACC922D69AF00079935A /* User.swift */,
 				8E55D85122D3AFD4009F3E28 /* APIService.swift */,
 				8EB6B9A422C3EE7F002AABC5 /* AppDelegate.swift */,
 				8EDE4CFF22C6BD220037C034 /* UIFont.swift */,
+				8E24ACC722D697180079935A /* UserDefaults.swift */,
 				8EDE4D0522C6ED9F0037C034 /* KeyBoardService.swift */,
 				8EC6047C22CBD16B00D98455 /* SimpleHUD.swift */,
 				104358E922C73E3F00A75EE1 /* Notification.Name.swift */,
@@ -396,6 +402,7 @@
 				8E8D8DF822C5888F00744200 /* Country.swift in Sources */,
 				8ECF7E7122C54ECB00C75E8A /* String.swift in Sources */,
 				8E8D8DF622C57D6500744200 /* FileCoordinator.swift in Sources */,
+				8E24ACCA22D69AF00079935A /* User.swift in Sources */,
 				8EB6B9BF22C40D76002AABC5 /* UIView.swift in Sources */,
 				8E55D86522D3CFBE009F3E28 /* UIViewController.swift in Sources */,
 				8E55D86722D3EE43009F3E28 /* VerificationResult.swift in Sources */,
@@ -405,6 +412,7 @@
 				8E8D8DFA22C590D100744200 /* SelectCountryViewModel.swift in Sources */,
 				8EDE4D0022C6BD220037C034 /* UIFont.swift in Sources */,
 				8E55D86322D3CB30009F3E28 /* AiTmedResult.swift in Sources */,
+				8E24ACC822D697180079935A /* UserDefaults.swift in Sources */,
 				8EC6048322CC194700D98455 /* UpdatePasswordViewController.swift in Sources */,
 				8EDE4D0622C6ED9F0037C034 /* KeyBoardService.swift in Sources */,
 				8EB6B9C322C448BD002AABC5 /* TYPasswordTextField.swift in Sources */,

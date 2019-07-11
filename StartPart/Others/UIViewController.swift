@@ -26,7 +26,7 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func displayHUD(title: String) {
+    func displayHUD(title: String = "One Moment...") {
         let HUD = SimpleHUD(labelString: title)
         view.addSubview(HUD)
     }

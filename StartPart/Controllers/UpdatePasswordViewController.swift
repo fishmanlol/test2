@@ -17,11 +17,24 @@ class UpdatePasswordViewController: FlowBaseViewController {
     weak var confirmInput: TYInput!
     weak var container: UILayoutGuide!
     
+    var verificationCode: String!
+    var phoneNumber: String!
+    
     lazy var HUD: SimpleHUD = {
         let HUD = SimpleHUD(labelString: "One Moment...")
         HUD.alpha = 0
         return HUD
     }()
+    
+    init(phoneNumber: String, verificationCode: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.verificationCode = verificationCode
+        self.phoneNumber = phoneNumber
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,12 +163,16 @@ class UpdatePasswordViewController: FlowBaseViewController {
         }
     }
     
-    private func updatePassword(_ password: String, completion: @escaping (Bool, String?) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if password == "12345678" {
-                completion(true, nil)
+    private func updatePassword(_ password: String) {
+        displayHUD()
+        APIService.shared.resetPassword(phoneNumber: phoneNumber, verificationCode: verificationCode, password: password) { (success) in
+            self.removeHUD()
+            
+            if success {
+                let finish = FinishViewController()
+                self.navigationController?.pushViewController(finish, animated: false)
             } else {
-                completion(false, "You should try 12345678")
+                self.showError("Reset password failed.")
             }
         }
     }
@@ -164,18 +181,9 @@ class UpdatePasswordViewController: FlowBaseViewController {
         let password = passwordInput.text
         checkPassword() { (correct, message) in
             if correct {
-                self.showHUD()
-                updatePassword(password) { (correct, message) in
-                    self.hideHUD()
-                    if correct { //go to finish forgot password page
-                        let finish = FinishViewController()
-                        self.navigationController?.pushViewController(finish, animated: false)
-                    } else { //show error
-                        self.showError(message)
-                    }
-                }
+                updatePassword(password)
             } else {
-                showError(message)
+                self.showError(message)
             }
         }
     }

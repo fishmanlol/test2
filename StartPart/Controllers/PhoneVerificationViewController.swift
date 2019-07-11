@@ -90,11 +90,11 @@ class PhoneVerificationViewController: FlowBaseViewController {
         pinCodeTextField.becomeFirstResponder()
         pinCodeTextField.delegate = self
         pinCodeTextField.textColor = .black
-        pinCodeTextField.keyboardType = .numberPad
+        pinCodeTextField.keyboardType = .phonePad
         self.pinCodeTextField = pinCodeTextField
         view.addSubview(pinCodeTextField)
         
-        let errorLabel = SpacingLabel(text: "Pin error, try 123456.", spacing: 0.5, font: UIFont.avenirNext(bold: .regular, size: 12))
+        let errorLabel = SpacingLabel(text: "Error happens, please try later.", spacing: 0.5, font: UIFont.avenirNext(bold: .regular, size: 12))
         errorLabel.isHidden = true
         errorLabel.updateColor(to: UIColor.red)
         self.errorLabel = errorLabel
@@ -164,15 +164,14 @@ class PhoneVerificationViewController: FlowBaseViewController {
     }
     
     private func handleCodeError() {
-        print("error code")
         showErrorLabel()
         self.pinCodeTextField.becomeFirstResponder()
     }
     
     private func handleCodeCorrect() {
-        print("success!")
         if forgotFlow { //go to update password page
-            let updatePasswordController = UpdatePasswordViewController()
+            let phoneNumberString = "+\(phoneNumber.countryCode) \(phoneNumber.nationalNumber)"
+            let updatePasswordController = UpdatePasswordViewController(phoneNumber: phoneNumberString, verificationCode: pinCodeTextField.text!)
             navigationController?.pushViewController(updatePasswordController, animated: false)
         } else { //finish register
             let finishViewController = FinishViewController()
@@ -188,60 +187,53 @@ class PhoneVerificationViewController: FlowBaseViewController {
         errorLabel.isHidden = false
     }
     
-    private func showHUD() {
-        view.addSubview(HUD)
-        UIView.animate(withDuration: 0.15) {
-            self.HUD.alpha = 1
-        }
-    }
-    
-    private func hideHUD() {
-        UIView.animate(withDuration: 0.15, animations: {
-            self.HUD.alpha = 0
-        }) { (_) in
-            self.HUD.removeFromSuperview()
-        }
-    }
-    
-    private func validate(code: String, complete: @escaping (Bool) -> Void) {
+    private func validate(code: String) {
+        displayHUD()
+        
         let phoneNumberString = "+\(phoneNumber.countryCode) \(phoneNumber.nationalNumber)"
         if forgotFlow { //forgot password flow
-            print("forgot password?")
+            APIService.shared.login(phoneNumber: phoneNumberString, verificationCode: code) { (success, resultData) in
+                self.removeHUD()
+                
+                if success {
+                    self.handleCodeCorrect()
+                } else {
+                    self.handleCodeError()
+                }
+            }
+            
         } else { //registration flow
             guard let password = registrationInfo?.password, let firstName = registrationInfo?.firstName, let lastName = registrationInfo?.lastName else {
-                print("registration info error")
-                complete(false)
+                removeHUD()
+                handleCodeError()
                 return
             }
             
-            APIService.shared.register(phoneNumber: phoneNumberString, verificationCode: code, password: password, firstName: firstName, middleName: registrationInfo?.middleName, lastName: lastName) { (success, error) in
-                if !success {
-                    print("Error happens in register")
-                    complete(false)
-                    return
+            APIService.shared.register(phoneNumber: phoneNumberString, verificationCode: code, password: password, firstName: firstName, middleName: registrationInfo?.middleName, lastName: lastName) { (success, resultData) in
+                self.removeHUD()
+                
+                if success {
+                    self.handleCodeCorrect()
+                } else {
+                    self.handleCodeError()
                 }
-            
-                print("success!")
-                complete(true)
             }
             
         }
     }
     
     private func sendVerification() {
-        
-        inputValid = false
+        displayHUD()
         let phoneNumberString = "+\(phoneNumber.countryCode) \(phoneNumber.nationalNumber)"
-        APIService.shared.sendVerficationCode(phoneNumber: phoneNumberString) { (error, result) in
-            
-            guard error == nil, let result = result, result.errorCode == "0" else {
-                print("error")
-                self.displayAlert(title: "Oops", msg: "Please try again later.", hasCancel: false, action: {})
-                self.inputValid = true
-                return
+        APIService.shared.sendVerficationCode(phoneNumber: phoneNumberString) { (success) in
+            self.removeHUD()
+            self.inputValid = false
+            if success {
+                self.beginCountdown()
+                self.hideErrorLabel()
+            } else {
+                self.showErrorLabel()
             }
-            
-            self.beginCountdown()
         }
     }
     
@@ -286,15 +278,7 @@ extension PhoneVerificationViewController: PinCodeTextFieldDelegate {
         
         let digits = textField.text?.count ?? 0
         if digits == textField.characterLimit { //complete input
-            showHUD()
-            validate(code: textField.text!) { (isCorrect) in
-                self.hideHUD()
-                if isCorrect {
-                    self.handleCodeCorrect()
-                } else {
-                    self.handleCodeError()
-                }
-            }
+            validate(code: textField.text!)
         }
     }
 }

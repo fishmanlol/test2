@@ -107,34 +107,28 @@ class PhoneNumberViewController: FlowBaseViewController {
         remindLabel.text = "We'll send you an SMS verification code."
     }
     
-    private func sendVerification(phoneNumber: PhoneNumber, completion: @escaping (Bool) -> Void) {
+    private func sendVerification(phoneNumber: PhoneNumber) {
+        displayHUD()
+        
         let phoneNumberString = "+\(phoneNumber.countryCode) \(phoneNumber.nationalNumber)"
-        APIService.shared.sendVerficationCode(phoneNumber: phoneNumberString) { (error, result) in
+        APIService.shared.sendVerficationCode(phoneNumber: phoneNumberString) { (success) in
             
-            guard error == nil, let result = result, result.errorCode == "0" else {
-                completion(false)
-                return
+            self.removeHUD()
+            if success {
+                self.restoreRemind()
+                let phoneVerificationViewController = PhoneVerificationViewController(phoneNumber: phoneNumber, phoneNumberKit: self.phoneNumberKit, lastSend: Date(), forgotFlow: self.forgotFlow, registrationInfo: self.registrationInfo)
+                self.navigationController?.pushViewController(phoneVerificationViewController, animated: false)
+            } else {
+                self.remindError("Oops, send verification code failed.")
+                self.phoneNumber = nil
             }
-            
-            completion(true)
         }
     }
     
     @objc func nextButtonTapped() {
         guard let phoneNumber = self.phoneNumber else { return }
-        displayHUD(title: "One Moment...")
         view.endEditing(true)
-        sendVerification(phoneNumber: phoneNumber) { success in
-            self.removeHUD()
-            if success {
-                let phoneVerificationViewController = PhoneVerificationViewController(phoneNumber: phoneNumber, phoneNumberKit: self.phoneNumberKit, lastSend: Date(), forgotFlow: self.forgotFlow, registrationInfo: self.registrationInfo)
-                
-                self.navigationController?.pushViewController(phoneVerificationViewController, animated: false)
-            } else {
-                self.remindError("This mobile number is not available")
-                self.phoneNumber = nil
-            }
-        }
+        sendVerification(phoneNumber: phoneNumber)
     }
     
 }

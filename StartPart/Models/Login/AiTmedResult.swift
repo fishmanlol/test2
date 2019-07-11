@@ -8,14 +8,17 @@
 
 import Foundation
 
-struct AiTmedResult: Decodable {
+protocol ResultData {
+    init?(dict: [String: Any])
+}
+
+class AiTmedResult<T: ResultData> {
     let errorCode: String
     var errorDetails: [ErrorDetail]?
-    var data: ResultData?
+    var data: T?
     var pagination: Int?
     
     init?(dict: [String: Any]) {
-        print(dict)
         guard let errorCode = dict["error_code"] as? Int else { return nil }
         self.errorCode = "\(errorCode)"
         
@@ -27,24 +30,16 @@ struct AiTmedResult: Decodable {
             }
         }
         
-        if let data = dict["data"] as? ResultData {
+        if let rawDict = dict["data"] as? [String: Any], let data = T(dict: rawDict)  {
             self.data = data
         }
         
         if let pagination = dict["pagination"] as? Int {
             self.pagination = pagination
         }
-        
     }
-    
-//    enum CodingKeys: String, CodingKey {
-//        case errorCode = "error_code"
-//        case errorDetails = "error_detail"
-//        case pagination = "pagination"
-//        case data = "data"
-//    }
-//
-    struct ErrorDetail: Decodable {
+
+    struct ErrorDetail {
         var errorName: String
         var errorMessage: String
         
@@ -54,95 +49,42 @@ struct AiTmedResult: Decodable {
             self.errorMessage = errorMessage
         }
     }
-    
-    class ResultData: Decodable {}
-    
-//    required init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        self.errorCode = try container.decode(String.self, forKey: .errorCode)
-//        self.pagination = try container.decode(Int.self, forKey: .pagination)
-//    }
-    
-//    struct ErrorDetail: Decodable {
-//        var phoneNumberError: String?
-//        var phoneVerificationCodeError: String?
-//        var passwordError: String?
-//        var messageError: String?
-//        var firstNameError: String?
-//        var lastNameError: String?
-//
-//        enum CodingKeys: String, CodingKey {
-//            case phoneNumberError = "phone_number"
-//            case phoneVerificationCodeError = "phone_verification_code"
-//            case passwordError = "password"
-//            case messageError = "message"
-//            case firstNameError = "first_name"
-//            case lastNameError = "last_name"
-//        }
-//    }
-    
-    
+}
 
 //Registraion Data
-    class RegistrationResultData: ResultData {
-        let userId: String
-        let jwtToken: String
-        let tvToken: String
-
-        enum CodingKeys: String, CodingKey {
-            case userId = "user_id"
-            case jwtToken = "jwt_token"
-            case tvToken = "tv_access_token"
-        }
-
-        init?(userId: String?, jwtToken: String?, tvToken: String?) {
-            guard let userId = userId, let jwtToken = jwtToken, let tvToken = tvToken else {
-                return nil
-            }
-            self.userId = userId
-            self.jwtToken = jwtToken
-            self.tvToken = tvToken
-
-            super.init()
-        }
-
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.userId = try container.decode(String.self, forKey: .userId)
-            self.jwtToken = try container.decode(String.self, forKey: .jwtToken)
-            self.tvToken = try container.decode(String.self, forKey: .tvToken)
-
-            super.init()
-        }
-    }
+class RegistrationAndLoginResultData: ResultData {
+    let userId: String
+    let jwtToken: String
+    let tvToken: String
     
-//Verification Data
-    class VerificationResultData: ResultData {
-        let phoneNumber: String
-        let verificationCode: String
-        
-        enum CodingKeys: String, CodingKey {
-            case phoneNumber = "phone_number"
-            case verificationCode = "verification_code"
+    required init?(dict: [String: Any]) {
+        guard let userId = dict["user_id"] as? String, let jwtToken = dict["jwt_token"] as? String, let tvToken = dict["tv_access_token"] as? String else {
+            return nil
         }
         
-        init?(phoneNumber: String?, verificationCode: String?) {
-            guard let phoneNumber = phoneNumber, let verificationCode = verificationCode else {
-                return nil
-            }
-            self.phoneNumber = phoneNumber
-            self.verificationCode = verificationCode
-            
-            super.init()
-        }
-        
-        required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
-            self.verificationCode = try container.decode(String.self, forKey: .verificationCode)
-            
-            super.init()
-        }
+        self.userId = userId
+        self.jwtToken = jwtToken
+        self.tvToken = tvToken
     }
 }
 
+//Verification Data
+class VerificationResultData: ResultData {
+
+    required init?(dict: [String: Any]) { return nil }
+}
+
+//Reset Password Data
+class ResetPasswordResultData: ResultData {
+    let userId: String
+    let phoneNumber: String
+    
+    required init?(dict: [String : Any]) {
+        guard let userId = dict["user_id"] as? String, let phoneNumber = dict["phone_number"] as? String else {
+            return nil
+        }
+        
+        self.userId = userId
+        self.phoneNumber = phoneNumber
+    }
+}
